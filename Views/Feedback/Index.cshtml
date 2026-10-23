@@ -1,0 +1,42 @@
+@model IEnumerable<FeedbackManagementMVC.Models.Feedback>
+@{
+    ViewData["Title"] = "Feedback";
+}
+<div class="page-heading">
+    <div><p class="eyebrow">FEEDBACK MANAGEMENT</p><h1>Customer Feedback</h1><p class="muted">Review submitted feedback and ratings.</p></div>
+    <a class="button" asp-action="Create">+ Submit Feedback</a>
+</div>
+
+@if (TempData["SuccessMessage"] is not null) { <div class="alert success">@TempData["SuccessMessage"]</div> }
+@if (TempData["ErrorMessage"] is not null) { <div class="alert error">@TempData["ErrorMessage"]</div> }
+
+@if (!Model.Any())
+{
+    <section class="empty-state"><h2>No feedback yet</h2><p>Be the first to share your feedback.</p><a asp-action="Create" class="button">Submit feedback</a></section>
+}
+else
+{
+    <div class="table-wrap">
+    <table>
+        <thead><tr><th>Name</th><th>Category</th><th>Rating</th><th>Submitted</th><th>Actions</th></tr></thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><strong>@item.Name</strong><br /><span class="muted small">@item.Email</span></td>
+                <td><span class="pill">@item.Category</span></td>
+                <td><span class="rating">@item.Rating / 5</span></td>
+                <td>@item.SubmittedAt.ToString("dd MMM yyyy, hh:mm tt")</td>
+                <td class="actions">
+                    <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Delete this feedback?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="link-button danger-text">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    </div>
+}

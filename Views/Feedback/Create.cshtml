@@ -1,0 +1,22 @@
+@model FeedbackManagementMVC.Models.Feedback
+@{
+    ViewData["Title"] = "Submit Feedback";
+}
+<p class="eyebrow">WE VALUE YOUR OPINION</p>
+<h1>Submit Feedback</h1>
+<p class="muted">Fill in the form below. Fields marked as required must be completed.</p>
+
+<section class="form-card">
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation summary"></div>
+        <partial name="_FeedbackForm" model="Model" />
+        <div class="form-actions">
+            <button type="submit" class="button">Submit Feedback</button>
+            <a asp-action="Index" class="button secondary">Cancel</a>
+        </div>
+    </form>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

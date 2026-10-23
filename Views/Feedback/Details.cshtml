@@ -1,0 +1,17 @@
+@model FeedbackManagementMVC.Models.Feedback
+@{
+    ViewData["Title"] = "Feedback Details";
+}
+<p class="eyebrow">FEEDBACK DETAILS</p>
+<h1>Feedback from @Model.Name</h1>
+<section class="detail-card">
+    <dl>
+        <dt>Name</dt><dd>@Model.Name</dd>
+        <dt>Email</dt><dd>@Model.Email</dd>
+        <dt>Category</dt><dd>@Model.Category</dd>
+        <dt>Rating</dt><dd>@Model.Rating / 5</dd>
+        <dt>Comments</dt><dd class="comments">@Model.Comments</dd>
+        <dt>Submitted</dt><dd>@Model.SubmittedAt.ToString("dd MMM yyyy, hh:mm tt")</dd>
+    </dl>
+    <a asp-action="Index" class="button secondary">Back to list</a>
+</section>

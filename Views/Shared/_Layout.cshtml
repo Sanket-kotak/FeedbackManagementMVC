@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Feedback Manager</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" asp-controller="Feedback" asp-action="Index">Feedback Manager</a>
+            <nav><a asp-controller="Feedback" asp-action="Index">All Feedback</a><a asp-controller="Feedback" asp-action="Create">Submit Feedback</a></nav>
+        </div>
+    </header>
+    <main class="container main-content">
+        @RenderBody()
+    </main>
+    <footer class="container footer">ASP.NET Core MVC Lab Exercise — Feedback Management</footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

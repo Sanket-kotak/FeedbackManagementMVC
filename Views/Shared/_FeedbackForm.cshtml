@@ -1,0 +1,32 @@
+@model FeedbackManagementMVC.Models.Feedback
+
+<div class="form-row">
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter your full name" })
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "validation" })
+</div>
+<div class="form-row">
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "you@example.com" })
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation" })
+</div>
+<div class="form-row">
+    @Html.LabelFor(m => m.Category)
+    @Html.DropDownListFor(m => m.Category,
+        new SelectList(new[] { "Compliment", "Suggestion", "Complaint", "Other" }, Model.Category),
+        "-- Select category --",
+        new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Category, "", new { @class = "validation" })
+</div>
+<div class="form-row">
+    @Html.LabelFor(m => m.Rating)
+    @Html.DropDownListFor(m => m.Rating,
+        new SelectList(new[] { 1, 2, 3, 4, 5 }.Select(x => new { Value = x, Text = $"{x} - {(x == 5 ? "Excellent" : x == 4 ? "Good" : x == 3 ? "Average" : x == 2 ? "Poor" : "Very poor")}" }), "Value", "Text", Model.Rating),
+        new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "validation" })
+</div>
+<div class="form-row">
+    @Html.LabelFor(m => m.Comments)
+    @Html.TextAreaFor(m => m.Comments, 5, 50, new { @class = "form-control", placeholder = "Write at least 10 characters..." })
+    @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "validation" })
+</div>
